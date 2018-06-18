@@ -12,6 +12,10 @@ import { combineReducers, createStore } from 'redux';
     return state;
   }
   function userReducer(state = '', action) {
+    switch(action.type){
+      case 'updateUser':
+        return action.payload.user
+    }
     return state;
   }
   const allReducers = combineReducers({
@@ -19,12 +23,37 @@ import { combineReducers, createStore } from 'redux';
     user: userReducer
   })
   //creating the store
-  const store = createStore(allReducers, {
+  const store = createStore(//function that takes 3 parameters here
+    //one: pass the combineReducer const here
+    allReducers,
+    //two: the properties hard coded here
+    {
     products: [{"name":"MacPro"}],
     user: "Gel"
-  });
+    },
+    //three: check if browser has devtool extension for redux
+    window.devToolsExtension && window.devToolsExtension()
+
+);
 
 console.log(store.getState())
+
+//update state
+const updateUserAction = {
+  type:'updateUser',
+  payload: {
+    user:'John'
+  }
+}
+const updateUserAction2 = {
+  type: "updateUser",
+  payload: {
+    user: "Mike",
+    product:"Windows - PC"
+  }
+};
+store.dispatch(updateUserAction);
+store.dispatch(updateUserAction2)
 
 // //dispatching an action
 // const action = {
