@@ -11,10 +11,10 @@ import { combineReducers, createStore } from 'redux';
    function productReducer (state = [], action){
     return state;
   }
-  function userReducer(state = '', action) {
-    switch(action.type){
+  function userReducer(state = '', {type, payload}) { //es6 object destructor here
+    switch(type){
       case 'updateUser':
-        return action.payload.user
+        return payload.user
     }
     return state;
   }
