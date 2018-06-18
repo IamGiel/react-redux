@@ -5,31 +5,38 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 //modified code here
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
 
-//reducer
-  function reducer(state, action) {
-    console.log("this is action 💪 ",action)
-    if(action.type === "changeState"){
-      return action.payload.newState;
-    }
-    return 'hello 🌎';
+  //reducer
+   function productReducer (state = [], action){
+    return state;
   }
-const store = createStore(reducer);
+  function userReducer(state = '', action) {
+    return state;
+  }
+  const allReducers = combineReducers({
+    products: productReducer,
+    user: userReducer
+  })
+  //creating the store
+  const store = createStore(allReducers, {
+    products: [{"name":"MacPro"}],
+    user: "Gel"
+  });
 
 console.log(store.getState())
 
-//dispatching an action
-const action = {
-  type: 'changeState',
-  payload: {
-    newState: 'New state'
-  }
-}
-//set action to the store
-store.dispatch(action);
+// //dispatching an action
+// const action = {
+//   type: 'changeState',
+//   payload: {
+//     newState: '🌎 sees you!'
+//   }
+// }
+// //set action to the store
+// store.dispatch(action);
 
-console.log(store.getState());
+// console.log(store.getState());
 
 
 ReactDOM.render(<App />, document.getElementById('root'));
