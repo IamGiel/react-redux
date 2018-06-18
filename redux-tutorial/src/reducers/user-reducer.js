@@ -1,11 +1,11 @@
-export default
+import { UPDATE_USER } from '../actions/user-actions';
 
-function userReducer(state = "", { type, payload }) {
+export default function userReducer(state = "", { type, payload }) {
   //es6 object destructor here
   switch (type) {
-    case "updateUser":
+    case UPDATE_USER:
       return payload.user;
     default:
+      return state;
   }
-  return state;
 }

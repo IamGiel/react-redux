@@ -1,6 +1,6 @@
-export default
 
-function productReducer(state = [], action) {
+
+export default function productReducer(state = [], action) {
   return state;
 }
 
